@@ -51,3 +51,13 @@ const user = [
 console.log(user);
 user[1].name = "Asad";
 console.log(user);
+
+
+const course = {
+    courseName: "js In Urdu",
+    price: 1000,
+    courseInstructor: "Hitesh Indian",
+}
+// const {courseInstructor} = course
+const {courseInstructor: instructor} = course
+console.log(instructor);
