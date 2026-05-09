@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Changer</title>
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background-color: black;
+      color: white;
+      height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container{
+      text-align: center;
+    }
+
+    .heading{
+      font-size: 45px;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
+
+    .colors{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .button{
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      border: 4px solid white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button:hover{
+      transform: scale(1.1);
+    }
+
+    #white{
+      background-color: white;
+    }
+
+    #red{
+      background-color: red;
+    }
+
+    #blue{
+      background-color: blue;
+    }
+
+    #green{
+      background-color: green;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1 class="heading">Color Scheme Switcher</h1>
+
+    <div class="colors">
+
+      <span class="button" id="white"></span>
+      <span class="button" id="red"></span>
+      <span class="button" id="blue"></span>
+      <span class="button" id="green"></span>
+
+    </div>
+
+  </div>
+
+</body>
+
+<script>
+
+  // const heading = document.querySelector(".heading")
+
+  // const white = document.getElementById("white")
+  // const red = document.getElementById("red")
+  // const blue = document.getElementById("blue")
+  // const green = document.getElementById("green")
+
+  // white.onclick = function(){
+
+  //   document.body.style.backgroundColor = "white"
+  //   heading.style.color = "black"
+  //   white.style.border = "4px solid black"
+
+  // }
+
+  // red.onclick = function(){
+
+  //   document.body.style.backgroundColor = "red"
+  //   heading.style.color = "white"
+ 
+
+  // }
+
+  // blue.onclick = function(){
+
+  //   document.body.style.backgroundColor = "blue"
+  //   heading.style.color = "white"
+
+  // }
+
+  // green.onclick = function(){
+
+  //   document.body.style.backgroundColor = "green"
+  //   heading.style.color = "white"
+
+  // }
+
+  const buttons = document.querySelectorAll(".button")
+  const heading = document.querySelector(".heading")
+  const body = document.querySelector("body")
+
+  buttons.forEach(function (button){
+    button.addEventListener("click", function(e){
+    body.style.backgroundColor = e.target.id
+    buttons.forEach((btn) => {
+      btn.style.border = "4px solid white"
+    })
+    e.target.style.border = "4px solid black"
+
+    if (e.target.id === "white"){
+      heading.style.color = "black"
+    }else {
+      heading.style.color = "white"
+    }
+    })
+  
+  })
+
+</script>
+</html>
