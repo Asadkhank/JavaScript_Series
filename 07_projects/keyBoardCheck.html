@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keyboard Magic</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
+    }
+
+    #insert{
+      width: 90%;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .key{
+      font-size: 28px;
+      font-weight: bold;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{
+        box-shadow: 0 0 10px #00f7ff;
+      }
+      to{
+        box-shadow: 0 0 25px #00f7ff;
+      }
+    }
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      overflow: hidden;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    th{
+      background: #00c6ff;
+      color: white;
+      padding: 15px;
+      font-size: 20px;
+    }
+
+    td{
+      padding: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    tr:hover{
+      background: rgba(255,255,255,0.15);
+      transition: 0.3s;
+    }
+
+    .color{
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop{
+      from{
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to{
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="insert">
+    <div class="key">Press any key and watch magic ✨</div>
+  </div>
+
+</body>
+
+<script>
+  const insert = document.getElementById("insert")
+
+  window.addEventListener("keydown", (e) => {
+
+    insert.innerHTML = `
+      <div class="color">
+        <table>
+          <tr>
+            <th>Key</th>
+            <th>Key Code</th>
+            <th>Code</th>
+          </tr>
+
+          <tr>
+            <td>${e.key === " " ? "Space" : e.key}</td>
+            <td>${e.keyCode}</td>
+            <td>${e.code}</td>
+          </tr>
+        </table>
+      </div>
+    `
+  })
+</script>
+
+</html>
