@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random User Card</title>
+
+  <style>
+
+    body{
+      background-color: #212121;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial;
+    }
+
+    .card{
+      width: 300px;
+      background-color: #333;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+
+    .card img{
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid white;
+    }
+
+    .card h2{
+      margin-bottom: 10px;
+    }
+
+    .info{
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    button{
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: orange;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    Loading...
+  </div>
+
+</body>
+
+<script>
+
+const card = document.querySelector(".card")
+
+function getUser(){
+
+  const requestUrl = 'https://randomuser.me/api/'
+
+  const xhr = new XMLHttpRequest()
+
+  xhr.open('GET', requestUrl)
+
+  xhr.onreadystatechange = function(){
+
+    if(xhr.readyState === 4){
+
+      const data = JSON.parse(this.responseText)
+
+      const user = data.results[0]
+
+      card.innerHTML = `
+      
+        <img src="${user.picture.large}">
+
+        <h2>
+          ${user.name.first} ${user.name.last}
+        </h2>
+
+        <div class="info">
+          <strong>Gender:</strong> ${user.gender}
+        </div>
+
+        <div class="info">
+          <strong>Age:</strong> ${user.dob.age}
+        </div>
+
+        <div class="info">
+          <strong>Email:</strong> ${user.email}
+        </div>
+
+        <div class="info">
+          <strong>Country:</strong> ${user.location.country}
+        </div>
+
+        <div class="info">
+          <strong>Phone:</strong> ${user.phone}
+        </div>
+
+        <button onclick="getUser()">
+          New User
+        </button>
+
+      `
+    }
+  }
+
+  xhr.send()
+}
+
+getUser()
+
+</script>
+</html>
